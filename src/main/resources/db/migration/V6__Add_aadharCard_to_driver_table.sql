@@ -1,0 +1,2 @@
+ALTER TABLE driver
+ADD COLUMN aadhar_card VARCHAR(255);
