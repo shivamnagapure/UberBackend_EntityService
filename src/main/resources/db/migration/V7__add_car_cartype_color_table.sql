@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS color (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    name VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS car (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    plate_number VARCHAR(255) UNIQUE NOT NULL,
+    color_id BIGINT NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    car_type ENUM('XL','SEDAN','HATCHBACK','COMPACT_SUV','SUV'),
+    driver_id BIGINT NOT NULL,
+    CONSTRAINT fk_car_color FOREIGN KEY (color_id) REFERENCES color(id),
+    CONSTRAINT fk_car_driver FOREIGN KEY (driver_id) REFERENCES driver(id)
+);
